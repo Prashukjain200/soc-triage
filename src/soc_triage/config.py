@@ -10,6 +10,7 @@ DATA_DIR = ROOT_DIR / "data"
 USERS_CSV = DATA_DIR / "users.csv"
 IP_REPUTATION_CSV = DATA_DIR / "ip_reputation.csv"
 ALERTS_CSV = DATA_DIR / "alerts.csv"
+SAMPLE_ALERTS_CSV = DATA_DIR / "sample_alerts.csv"
 POLICY_MD = DATA_DIR / "security_triage_policy.md"
 
 CHAT_MODEL = os.getenv("CHAT_MODEL", "gpt-5.6-luna")

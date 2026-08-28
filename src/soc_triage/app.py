@@ -127,6 +127,14 @@ with st.sidebar:
         config.ALERTS_CSV.write_bytes(uploaded.getvalue())
         st.success(f"Saved to {config.ALERTS_CSV.name}")
 
+    if st.button("Use demo data", icon=":material/science:", use_container_width=True):
+        config.ALERTS_CSV.write_bytes(config.SAMPLE_ALERTS_CSV.read_bytes())
+        st.session_state.queue = None
+        st.session_state.awaiting = None
+        st.session_state.log = []
+        st.success("Loaded the sample alerts.csv bundled with this app")
+        st.rerun()
+
     csv_error = validate_alerts_csv(config.ALERTS_CSV) if config.ALERTS_CSV.exists() else None
     if csv_error:
         st.error(csv_error)
@@ -150,6 +158,21 @@ with st.sidebar:
             "Reference data (`data/users.csv`, `data/ip_reputation.csv`, "
             "`data/security_triage_policy.md`) ships with the repo — only "
             "`alerts.csv` needs uploading."
+        )
+
+if st.session_state.queue is None:
+    if config.ALERTS_CSV.exists() and not csv_error:
+        preview_df = pd.read_csv(config.ALERTS_CSV)
+        pending_count = int((preview_df["status"] == "pending").sum())
+        with st.expander(f"Preview — {len(preview_df)} row(s), {pending_count} pending", expanded=True):
+            st.dataframe(preview_df, use_container_width=True, height=260)
+    else:
+        st.markdown(
+            '<div class="empty-state">'
+            '<div class="material-symbols-outlined">upload_file</div>'
+            '<p>Upload an alerts.csv in the sidebar, or click "Use demo data" to try it instantly.</p>'
+            '</div>',
+            unsafe_allow_html=True,
         )
 
 total_processed = len(st.session_state.log)
@@ -220,14 +243,6 @@ if st.session_state.log:
         file_name="alerts_resolved.csv",
         mime="text/csv",
         icon=":material/download:",
-    )
-elif st.session_state.queue is None:
-    st.markdown(
-        '<div class="empty-state">'
-        '<div class="material-symbols-outlined">upload_file</div>'
-        '<p>Upload an alerts.csv in the sidebar, then run the queue to begin triage.</p>'
-        '</div>',
-        unsafe_allow_html=True,
     )
 
 if st.session_state.queue == [] and st.session_state.awaiting is None and st.session_state.log:
