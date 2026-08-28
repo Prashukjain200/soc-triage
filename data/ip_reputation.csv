@@ -1,0 +1,11 @@
+ip,org,region,is_known_malicious,is_sanctioned_corporate_vpn,prior_incident_count,notes
+198.51.100.10,Quovadis Hosting,Lagos NG,yes,no,3,Associated with prior account-takeover attempts against Northwind accounts
+198.51.100.11,Quovadis Hosting,Lagos NG,yes,no,3,Same hosting block as 198.51.100.10; repeat offender range
+198.51.100.14,Quovadis Hosting,Lagos NG,yes,no,2,Same hosting block as 198.51.100.10/.11
+198.51.100.20,Unknown Tor Exit Node,Unknown,yes,no,1,"Confirmed Tor exit node, first seen this week"
+203.0.113.55,BT Consumer Broadband,London UK,no,no,0,"Residential/hospitality ISP range, no abuse history"
+203.0.113.60,BT Consumer Broadband,London UK,no,no,0,"Residential/hospitality ISP range, no abuse history"
+192.0.2.14,NovaVPN Corporate Pool,Chicago IL,no,yes,0,Company-sanctioned VPN provider for remote engineering staff
+192.0.2.18,NovaVPN Corporate Pool,Chicago IL,no,yes,0,Company-sanctioned VPN provider for remote engineering staff
+198.51.100.40,Northwind Corp Office,San Francisco CA,no,no,0,"Corporate office network, San Francisco HQ"
+198.51.100.41,Northwind Corp Office,Austin TX,no,no,0,"Corporate office network, Austin branch"

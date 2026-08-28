@@ -1,0 +1,9 @@
+user_email,full_name,department,role,usual_locations,usual_hours,usual_device,mfa_enrolled,typical_data_access,typical_resources,notes
+jsmith@northwind.com,Jordan Smith,Engineering,Senior Backend Engineer,San Francisco CA,09:00-18:00 PT,Corp-Laptop-4471,yes,medium,"code_repo, staging_env",
+bwright@northwind.com,Bailey Wright,Finance,Financial Analyst,San Francisco CA,08:00-17:00 PT,Corp-Laptop-6602,yes,medium,"finance_reports, expense_system",
+agupta@northwind.com,Ananya Gupta,Sales,Sales Manager,New York NY,08:00-19:00 ET,Corp-Laptop-2210,yes,low,"crm, sales_dashboard","Approved business travel: London, Aug 8-18 2026 (Ticket TRV-0091)"
+rpatel@northwind.com,Raj Patel,Engineering,DevOps Engineer,Remote (via NovaVPN Chicago pool),Flexible / on-call,Corp-Laptop-3390,yes,high,"infra_console, deploy_pipeline",
+mchen@northwind.com,Morgan Chen,Engineering,Site Reliability Engineer,San Francisco CA,On-call 24/7,Corp-Laptop-5581,yes,high,"production_database, infra_console",
+ttanaka@northwind.com,Taylor Tanaka,Marketing,Marketing Coordinator,Austin TX,09:00-17:00 CT,Corp-Laptop-5510,yes,low,"marketing_cms, analytics_dashboard",
+dwilliams@northwind.com,Devon Williams,Support,Customer Support Rep,Austin TX,09:00-17:00 CT,Corp-Laptop-7734,yes,low,"support_ticket_system",
+lkim@northwind.com,Lena Kim,IT,IT Administrator,San Francisco CA,09:00-18:00 PT,IT-Laptop-Pool,yes,high,"admin_console, user_directory","New laptop provisioned 2026-08-12 per IT ticket #4471 (device: IT-Laptop-New-8821)"

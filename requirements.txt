@@ -1,0 +1,9 @@
+langchain
+langchain-openai
+langchain-community
+langgraph
+langgraph-supervisor
+pandas
+python-dotenv==1.*
+requests
+streamlit
