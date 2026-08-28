@@ -1,3 +1,4 @@
+-e .
 langchain
 langchain-openai
 langchain-community
