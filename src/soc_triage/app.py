@@ -139,6 +139,12 @@ with st.sidebar:
     if csv_error:
         st.error(csv_error)
 
+    if config.ALERTS_CSV.exists() and not csv_error and st.session_state.queue is None:
+        preview_df = pd.read_csv(config.ALERTS_CSV)
+        pending_count = int((preview_df["status"] == "pending").sum())
+        st.caption(f"Preview — {len(preview_df)} row(s), {pending_count} pending")
+        st.dataframe(preview_df, use_container_width=True, height=220)
+
     start_disabled = (not config.ALERTS_CSV.exists()) or bool(csv_error)
     if st.button("Run queue", type="primary", icon=":material/play_arrow:", disabled=start_disabled, use_container_width=True):
         st.session_state.supervisor = supervisor_agent()
@@ -160,20 +166,14 @@ with st.sidebar:
             "`alerts.csv` needs uploading."
         )
 
-if st.session_state.queue is None:
-    if config.ALERTS_CSV.exists() and not csv_error:
-        preview_df = pd.read_csv(config.ALERTS_CSV)
-        pending_count = int((preview_df["status"] == "pending").sum())
-        with st.expander(f"Preview — {len(preview_df)} row(s), {pending_count} pending", expanded=True):
-            st.dataframe(preview_df, use_container_width=True, height=260)
-    else:
-        st.markdown(
-            '<div class="empty-state">'
-            '<div class="material-symbols-outlined">upload_file</div>'
-            '<p>Upload an alerts.csv in the sidebar, or click "Use demo data" to try it instantly.</p>'
-            '</div>',
-            unsafe_allow_html=True,
-        )
+if st.session_state.queue is None and (not config.ALERTS_CSV.exists() or csv_error):
+    st.markdown(
+        '<div class="empty-state">'
+        '<div class="material-symbols-outlined">upload_file</div>'
+        '<p>Upload an alerts.csv in the sidebar, or click "Use demo data" to try it instantly.</p>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
 total_processed = len(st.session_state.log)
 pending_left = len(st.session_state.queue) if st.session_state.queue is not None else 0

@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 .venv/
 src/soc_triage.egg-info/
+data/alerts.csv
